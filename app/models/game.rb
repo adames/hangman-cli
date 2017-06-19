@@ -1,24 +1,36 @@
 class Game
 
-  attr_accessor :word, :player_guess, :word_bank
+  attr_accessor :player
 
-
-  @@hi_scores = {wins: 0, losses: 0}
+  @@all = []
 
   def initialize
-    @word = 'hangman'
-    @player_guess = 0
-    @word_bank = []
+    @rounds = []
+    @player = nil
+    @@all << self
   end
 
-  def welcome
-    greeting = ""
-    puts greeting
+  def runner
+    welcome
+    name = ask_player_name
+    new_player = Player.new(name)
+    self.player = new_player
     start_round
   end
 
-  def start_round
+  def welcome
+    greeting = "Welcome to Hangman\n"
+    puts greeting
+  end
 
+  def ask_player_name
+    question = "What is your name?"
+    name = gets.chomp
+  end
+
+  def start_round
+    new_round = Round.new(self.player)
+    new_round.start
   end
 
 
