@@ -13,9 +13,11 @@ class Round
     @guesses = []
     @won = nil
     @player.rounds << self
-    #let's add a way to hold words already split in a method
-
     @@all << self
+  end
+
+  def self.all
+    @@all
   end
 
   def start

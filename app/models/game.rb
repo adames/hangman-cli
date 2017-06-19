@@ -10,12 +10,17 @@ class Game
     @@all << self
   end
 
+  def self.all
+    @@all
+  end
+
   def play
     welcome
     player_name = ask_player_name
     add_player(player_name)
     round = new_round
     round.start
+    binding.pry
   end
 
   def welcome
