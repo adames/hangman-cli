@@ -39,21 +39,22 @@ class Round
   end
 
   def correct_guess
-    puts "that was correct"
+    puts "That was correct!"
     if self.word_array - self.guesses == []
       self.won = true
-      puts 'you won!'
+      puts 'Congratulation, you won!'
     end
   end
 
   def incorrect_guess
     #add wrong guesses
-    puts "that was incorrect"
+    puts "That was incorrect!"
     self.wrong_guesses += 1
-    puts "you have #{5 - self.wrong_guesses} left!"
+    puts "You have #{5 - self.wrong_guesses} guesses left!"
     if self.wrong_guesses >= 5
       self.won = false
-      puts 'you lost!'
+      puts 'You lost!'
+      puts "The word was #{word_array.join}"
     end
   end
 
@@ -62,7 +63,9 @@ class Round
   end
 
   def generate_word
-    self.word_array = ['h', 'a', 'n', 'g', 'm', 'a', 'n']
+    wordlist = ['test', 'testing', 'hangman', 'noose', 'happy', 'outside', 'pry', 'prying', 'hash', 'code']
+    word = wordlist.sample
+    word.split('')
   end
 
   def display_hidden_word(word_array)
@@ -75,16 +78,16 @@ class Round
         '_'
       end
     end
-    puts "Word: #{hidden_word.join}"
+    puts "The word is: #{hidden_word.join}"
     hidden_word.join
   end
 
   def players_guess
     #this collects the player's guess and determines validity
-    puts "What is your guess?"
+    print "What is your guess? "
     guess = gets.chomp.downcase
     until valid_guess? guess
-      puts "Invalid guess, guess again."
+      print "Guess again: "
       guess = gets.chomp.downcase
     end
     self.guesses << guess
@@ -100,15 +103,15 @@ class Round
 
   def valid_guess?(guess)
     unless guess.length == 1
-      puts 'too long'
+      print 'Your guess was too long. '
       return false
     end
     unless (('a'..'z').to_a.include? guess)
-      puts 'not a..z'
+      print 'Guess must be a letter. '
       return false
     end
     unless !self.guesses.include? guess
-      puts 'already guessed'
+      print 'You already guessed that. '
       return false
     end
     true
