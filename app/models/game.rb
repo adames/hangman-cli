@@ -10,7 +10,7 @@ class Game
     @@all << self
   end
 
-  def runner
+  def play
     welcome
     name = ask_player_name
     new_player = Player.new(name)
