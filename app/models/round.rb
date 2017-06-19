@@ -12,7 +12,7 @@ class Round
     @word_array = [] #This will be randomly generated later.
     @guesses = []
     @won = nil
-    self.player.rounds << self
+    @player.rounds << self
     #let's add a way to hold words already split in a method
 
     @@all << self

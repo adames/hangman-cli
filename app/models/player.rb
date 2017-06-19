@@ -1,6 +1,6 @@
 class Player
   #player has a game
-  attr_accessor :name, :game
+  attr_accessor :name, :game, :rounds
 
   def initialize(name)
     @name = name

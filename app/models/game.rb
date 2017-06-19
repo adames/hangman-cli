@@ -1,6 +1,6 @@
 class Game
 
-  attr_accessor :player
+  attr_accessor :player, :rounds
 
   @@all = []
 
