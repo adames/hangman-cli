@@ -1,1 +1,4 @@
 #!/usr/bin/env ruby
+
+# Not sure where we want to run it.
+# I'm sure we probably want it running through Game.
