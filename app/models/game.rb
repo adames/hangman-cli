@@ -25,6 +25,7 @@ class Game
 
   def ask_player_name
     question = "What is your name?"
+    puts question
     name = gets.chomp
   end
 
