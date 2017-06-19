@@ -8,4 +8,8 @@ class Player
     @rounds = []
   end
 
+  def wins_and_losses
+    #writing now
+  end
+
 end

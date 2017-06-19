@@ -12,10 +12,10 @@ class Game
 
   def play
     welcome
-    name = ask_player_name
-    new_player = Player.new(name)
-    self.player = new_player
-    start_round
+    player_name = ask_player_name
+    add_player(player_name)
+    round = new_round
+    round.start
   end
 
   def welcome
@@ -29,9 +29,16 @@ class Game
     name = gets.chomp
   end
 
-  def start_round
-    new_round = Round.new(self.player)
-    new_round.start
+  def add_player(name)
+    new_player = Player.new(name)
+    new_player.game = self
+    self.player = new_player
+  end
+
+  def new_round
+    new_round = Round.new(self.player, self)
+    self.rounds << new_round
+    new_round
   end
 
 

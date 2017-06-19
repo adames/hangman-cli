@@ -5,12 +5,14 @@ class Round
 
   @@all = []
 
-  def initialize(player)
+  def initialize(player, game)
     @player = player
+    @game = game
     @wrong_guesses = 0
     @word_array = [] #This will be randomly generated later.
     @guesses = []
     @won = nil
+    self.player.rounds << self
     #let's add a way to hold words already split in a method
 
     @@all << self
