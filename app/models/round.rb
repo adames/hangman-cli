@@ -66,8 +66,6 @@ class Round
   end
 
   def generate_word
-    # wordlist = ['test', 'testing', 'hangman', 'noose', 'happy', 'outside', 'pry', 'prying', 'hash', 'code']
-    # word = wordlist.sample
     word = pick_random_line
     word.split('')
   end
