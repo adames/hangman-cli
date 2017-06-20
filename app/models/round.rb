@@ -1,7 +1,7 @@
 class Round
   # Round belongs to a player
   # Game has rounds
-  attr_accessor :word_array, :won, :wrong_guesses, :guesses
+  attr_accessor :word_array, :won, :wrong_guesses, :guesses, :display
 
   @@all = []
 
@@ -14,6 +14,7 @@ class Round
     @won = nil
     @player.rounds << self
     @@all << self
+    @display = nil
   end
 
   def self.all
@@ -40,6 +41,7 @@ class Round
 
   def correct_guess
     puts "That was correct!"
+    self.display.hangman(self.wrong_guesses)
     if self.word_array - self.guesses == []
       self.won = true
       puts 'Congratulation, you won!'
@@ -50,8 +52,9 @@ class Round
     #add wrong guesses
     puts "That was incorrect!"
     self.wrong_guesses += 1
-    puts "You have #{5 - self.wrong_guesses} guesses left!"
-    if self.wrong_guesses >= 5
+    self.display.hangman(self.wrong_guesses)
+    puts "You have #{6 - self.wrong_guesses} guesses left!"
+    if self.wrong_guesses >= 6
       self.won = false
       puts 'You lost!'
       puts "The word was #{word_array.join}"
@@ -70,7 +73,6 @@ class Round
 
   def display_hidden_word(word_array)
     #hide all but valid guesses
-
     hidden_word = word_array.map do |letter|
       if guesses.include? letter
         letter

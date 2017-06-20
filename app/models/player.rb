@@ -10,7 +10,6 @@ class Player
 
   def wins_and_losses
     wins_and_losses = {wins: 0, losses: 0}
-    binding.pry
     self.rounds.each do |round|
       if round.won
         wins_and_losses[:wins] += 1
