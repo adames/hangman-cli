@@ -25,6 +25,8 @@ class Menu
         break
       when '3'
         quit
+      else
+        puts "Invalid input: please select 1, 2, or 3."
       end
     end
   end

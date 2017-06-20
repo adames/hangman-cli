@@ -1,4 +1,10 @@
 #!/usr/bin/env ruby
+require_relative '../config/environment.rb'
 
-# Not sure where we want to run it.
-# I'm sure we probably want it running through Game.
+def reload
+  load 'config/environment.rb'
+end
+
+
+game = Game.new
+game.play
