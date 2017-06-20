@@ -1,11 +1,12 @@
 class Player
   # player has a game
-  attr_accessor :name, :game, :rounds
+  attr_accessor :name, :game, :rounds, :menu
 
   def initialize(name)
     @name = name
     @game = nil
     @rounds = []
+    @menu = nil
   end
 
   def wins_and_losses

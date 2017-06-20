@@ -1,12 +1,13 @@
 class Game
 
-  attr_accessor :player, :rounds, :display
+  attr_accessor :players, :rounds, :display, :menu, :exit_game
 
   @@all = []
 
   def initialize
     @rounds = []
-    @player = nil
+    @players = []
+    @exit_game = false
     @display = Display.new
     @@all << self
   end
@@ -20,22 +21,16 @@ class Game
     welcome
     player_name = ask_player_name
     add_player(player_name)
-    game_loop
-    binding.pry
+    add_menu
+    until self.exit_game
+      menu.options
+      play_round
+    end
   end
 
-  def game_loop
-    loop do
-      round = new_round
-      round.start
-      score = self.player.wins_and_losses
-      puts "You've won #{score[:wins]} times and lost #{score[:losses]} times."
-      puts "Do you want to quit? (y/n)"
-      answer = gets.chomp.downcase
-      if answer == 'y' || answer == 'yes'
-        break
-      end
-    end
+  def play_round
+    round = new_round
+    round.start
   end
 
   def welcome
@@ -52,11 +47,15 @@ class Game
   def add_player(name)
     new_player = Player.new(name)
     new_player.game = self
-    self.player = new_player
+    self.players << new_player
+  end
+
+  def add_menu
+    self.menu = Menu.new(self.players.last)
   end
 
   def new_round
-    new_round = Round.new(self.player, self)
+    new_round = Round.new(self.players.last, self)
     new_round.display = self.display
     self.rounds << new_round
     new_round
